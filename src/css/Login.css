@@ -15,23 +15,23 @@ body {
 .container {
     position: relative;
     max-width: 435px;
-    width: 120%;
+    width: 100%;
     background: #000000;
     padding: 34px;
     border-radius: 6px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     outline: 2px solid #fafafa;
-    outline-offset: 2px;
 }
 
-.h2 {
+.container h2 {
     font-size: 22px;
     font-weight: 600;
     color: #d32174;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
+    position: relative;
 }
 
-.h2::before {
+.container h2::before {
     content: '';
     position: absolute;
     left: 0;
@@ -46,12 +46,12 @@ form {
     margin-top: 30px;
 }
 
-.inputBox {
+.form-group {
     position: relative;
     margin: 18px 0;
 }
 
-.inputBox input {
+.form-group input { 
     height: 52px;
     width: 100%;
     padding: 0 15px;
@@ -61,19 +61,19 @@ form {
     background-color: #f3f3f3;
 }
 
-.inputBox input:focus {
+.form-group input:focus { 
     border-color: #d32174;
 }
 
 .errorMessage {
     position: absolute;
-    bottom: -20px; 
+    bottom: -20px;
     left: 0;
     width: 100%;
     color: #d32174;
     font-size: 12px;
     text-align: left;
-    height: 20px; 
+    height: 20px;
     padding: 0 15px;
 }
 
@@ -100,7 +100,6 @@ form {
     background-color: #d32174;
 }
 
-
 .text h3 {
     color: #333;
     text-align: center;
@@ -109,10 +108,15 @@ form {
 }
 
 .text h3 a {
-    color: #d32174;;
+    color: #d32174;
     text-decoration: none;
 }
 
 .text h3 a:hover {
     text-decoration: underline;
+    text-shadow: 0 0 5px #d32174,
+                 0 0 10px #d32174,
+                 0 0 20px #d32174,
+                 0 0 40px #d32174,
+                 0 0 80px #d32174;
 }

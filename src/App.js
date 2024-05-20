@@ -10,11 +10,11 @@ import Settings from './components/Settings';
 function App() {
   return (
     <>
+    <Router>
       <Nav />
-      <Router>
         <div>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/expenses" element={<Expenses />} />

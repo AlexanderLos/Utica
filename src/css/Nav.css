@@ -23,11 +23,17 @@
 }
 
 .Title a {
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: 500;
     color: #d32174;
     text-decoration: none;
+    text-shadow: 0 0 5px #d32174,
+                 0 0 10px #d32174,
+                 0 0 20px #d32174,
+                 0 0 40px #d32174,
+                 0 0 80px #d32174;
 }
+
 
 .NavLinks {
     display: flex;
@@ -35,10 +41,10 @@
 }
 
 .NavLinks a {
-    font-size: 1.3em;
+    font-size: 1.5em;
     color: #d32174;
     text-decoration: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
 }
 
 .NavLinks a:hover, .NavLinks a:focus {
