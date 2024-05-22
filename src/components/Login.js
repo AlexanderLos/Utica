@@ -38,7 +38,7 @@ function Login() {
         )}
       </Formik>
       <div className="text">
-        <h3>Already have an account? <a href="/">Log in</a></h3>
+        <h3>Need to make an account? <a href="/Register">Register</a></h3>
       </div>
     </div>
   );

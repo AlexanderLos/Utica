@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
 .NavBar, .Title a, .NavLinks a {
-  font-family: 'Source Code Pro', sans-serif;
+  font-family: "Play", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -37,7 +37,7 @@
 
 .NavLinks {
     display: flex;
-    gap: 1.5em;
+    gap: 1.8em;
 }
 
 .NavLinks a {

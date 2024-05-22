@@ -8,6 +8,8 @@ function Nav() {
       <div className="NavLinks">
         <Link to="/register">Register</Link>
         <Link to="/login">Login</Link>
+        <Link to="/Dashboard">Dashboard</Link>
+        <Link to="/Settings">Settings</Link>
       </div>
     </nav>
   );
