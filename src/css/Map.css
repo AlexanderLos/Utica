@@ -1,0 +1,44 @@
+/* Map.css */
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px; 
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 500;
+  color: #d32174;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.map-container {
+  width: 100%; 
+  margin-left: -300px;
+}
+
+.Mapspot {
+  position: relative;
+  height: 120%;
+  width: 130%;
+  border: 10px solid #ffffff;
+  border-radius: 25px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); 
+}
+
+.cluster-icon {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translate(-25%, -25%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
