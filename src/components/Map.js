@@ -96,8 +96,8 @@ export default function TestMap() {
         <div className='Mapspot'>
           <MapContainer center={mapCenter} zoom={13} style={{ height: "70vh", width: "100%" }}>
             <TileLayer
-              attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-              url='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+              attribution='&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+              url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
             />
             <MarkerClusterGroup
               chunkedLoading

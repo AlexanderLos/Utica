@@ -1,5 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 import '../css/Login.css';
 
 const RegisterSchema = Yup.object().shape({
@@ -9,6 +11,9 @@ const RegisterSchema = Yup.object().shape({
 });
 
 function Register() {
+  const navigate = useNavigate();
+  const { login } = useAuth(); 
+
   return (
     <div className="container">
       <h2>Register</h2>
@@ -20,6 +25,8 @@ function Register() {
           users.push({ email: values.email, password: values.password });
           localStorage.setItem('users', JSON.stringify(users));
           alert('Registration successful!');
+          login({ email: values.email }); // Log in the user
+          navigate('/map'); // Navigate to map page
           setSubmitting(false);
         }}
       >
