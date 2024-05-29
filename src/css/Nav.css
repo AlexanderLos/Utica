@@ -6,47 +6,49 @@
   font-style: normal;
 }
 
-
 .NavBar {
-    font-family: "Jersey 15", sans-serif;
-    width: 100%;
-    position: fixed;
-    top: .9em;
-    left: 0;
-    background-color: #000000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 250px;
+  font-family: "Jersey 15", sans-serif;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 250px;
 }
 
 .Title a {
-    font-size: 2em;
-    font-weight: 500;
-    color: #d32174;
-    text-decoration: none;
-    text-shadow: 0 0 5px #d32174,
-                 0 0 10px #d32174,
-                 0 0 20px #d32174,
-                 0 0 40px #d32174,
-                 0 0 80px #d32174;
+  font-size: 2em;
+  font-weight: 500;
+  color: #d32174;
+  text-decoration: none;
+  text-shadow: 0 0 5px #d32174,
+               0 0 10px #d32174,
+               0 0 20px #d32174,
+               0 0 40px #d32174,
+               0 0 80px #d32174;
 }
-
 
 .NavLinks {
-    display: flex;
-    gap: 1.8em;
+  display: flex;
+  gap: 1.8em;
 }
 
-.NavLinks a {
-    font-size: 1.5em;
-    color: #d32174;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
+.NavLinks a, .NavLinks button {
+  font-size: 1.5em;
+  color: #d32174;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
-.NavLinks a:hover, .NavLinks a:focus {
-    opacity: 0.7;
+.NavLinks a:hover, .NavLinks a:focus, .NavLinks button:hover, .NavLinks button:focus {
+  opacity: 0.7;
 }

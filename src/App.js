@@ -4,8 +4,7 @@ import Map from './components/Map';
 import Nav from './components/Nav';
 import Login from './components/Login';
 import Register from './components/Registration';
-import Dashboard from './components/Dashboard';
-import Settings from './components/Settings';
+import History from './components/History';
 import Testmap from './components/Testmap'; 
 import { AuthProvider, useAuth } from './components/AuthContext'; 
 
@@ -25,11 +24,10 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            {/* <Route path="/map" element={<PrivateRoute element={<Map />} />} /> */}
-            <Route path="/map" element={<Map />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/" element={<Register />} />
+            <Route path="/map" element={<PrivateRoute element={<Map />} />} />
+            <Route path="/History" element={<History />} />
             <Route path="/testmap" element={<Testmap />} /> 
-            <Route path="/settings" element={<PrivateRoute element={<Settings />} />} />
           </Routes>
         </div>
       </Router>

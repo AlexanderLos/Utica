@@ -1,13 +1,18 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 import '../css/Login.css';
 
 const LoginSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid Email').required('Email Is Required.'),
-  password: Yup.string().required('Password Is Required.')
+  email: Yup.string().email('Invalid Email').required('Email is required'),
+  password: Yup.string().required('Password is required')
 });
 
 function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   return (
     <div className="container">
       <h2>Login</h2>
@@ -15,7 +20,14 @@ function Login() {
         initialValues={{ email: '', password: '' }}
         validationSchema={LoginSchema}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
+          const users = JSON.parse(localStorage.getItem('users')) || [];
+          const user = users.find(user => user.email === values.email && user.password === values.password);
+          if (user) {
+            login(user);
+            navigate('/map');
+          } else {
+            alert('Invalid email or password');
+          }
           setSubmitting(false);
         }}
       >
@@ -38,7 +50,7 @@ function Login() {
         )}
       </Formik>
       <div className="text">
-        <h3>Need to make an account? <a href="/Register">Register</a></h3>
+        <h3>Need to make an account? <a href="/register">Register</a></h3>
       </div>
     </div>
   );
