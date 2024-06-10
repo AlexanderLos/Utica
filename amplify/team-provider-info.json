@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-utica-dev-1341f-authRole",
+      "UnauthRoleArn": "arn:aws:iam::830931821248:role/amplify-utica-dev-1341f-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::830931821248:role/amplify-utica-dev-1341f-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-utica-dev-1341f-deployment",
+      "UnauthRoleName": "amplify-utica-dev-1341f-unauthRole",
+      "StackName": "amplify-utica-dev-1341f",
+      "StackId": "arn:aws:cloudformation:us-east-1:830931821248:stack/amplify-utica-dev-1341f/2d0baf90-20fd-11ef-875f-0e84be550437",
+      "AmplifyAppId": "d4e19v71dytqp"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './css/App.css';
+import Donate from './components/Donate';
 import Map from './components/Map';
 import Nav from './components/Nav';
 import Login from './components/Login';
@@ -23,7 +24,8 @@ function App() {
         <div>
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/register" element={<Register/>} />
+            <Route path='/donate' element={<Donate/>} />
             <Route path="/" element={<Register />} />
             <Route path="/map" element={<PrivateRoute element={<Map />} />} />
             <Route path="/History" element={<History />} />

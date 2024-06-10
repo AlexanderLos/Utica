@@ -13,6 +13,7 @@ function Nav() {
           <>
             <Link to="/register">Register</Link>
             <Link to="/login">Login</Link>
+            <Link to="/donate">Donate</Link>
           </>
         ) : (
           <>
