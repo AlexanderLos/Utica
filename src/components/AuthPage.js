@@ -1,19 +1,23 @@
 import { signInWithGooglePopup } from '../utils/firebase.utils';
 import { useAuth } from './AuthContext';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import '../css/AuthPage.css';
 
 const AuthPage = () => {
   const { login } = useAuth();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
-    const user = await signInWithGooglePopup();
-    if (user) {
-      login(user);
-      navigate('/map'); 
+    try {
+      const user = await signInWithGooglePopup();
+      if (user) {
+        login(user);
+        navigate('/map'); 
+      }
+    } catch (error) {
+      console.error("Error signing in with Google:", error);
     }
-  }
+  };
 
   return (
     <div className="container">

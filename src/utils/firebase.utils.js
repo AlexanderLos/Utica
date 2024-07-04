@@ -1,16 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBSP2E84C2IZ0ZGhP1E72QRXNOthWkiV8w",
-  authDomain: "utica-faa05.firebaseapp.com",
-  projectId: "utica-faa05",
-  storageBucket: "utica-faa05.appspot.com",
-  messagingSenderId: "687679840771",
-  appId: "1:687679840771:web:540189c10faf74a58b6436",
-  measurementId: "G-XR028RG03K"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -21,7 +21,7 @@ const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 provider.setCustomParameters({
-    prompt: 'select_account'
+  prompt: 'select_account'
 });
 
 const createUserDocument = async (user) => {
