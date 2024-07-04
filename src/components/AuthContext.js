@@ -1,34 +1,35 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const auth = getAuth();
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    if (loggedInUser) {
-      setIsAuthenticated(true);
-    }
-  }, []);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return unsubscribe;
+  }, [auth]);
 
   const login = (user) => {
-    setIsAuthenticated(true);
-    localStorage.setItem('loggedInUser', JSON.stringify(user));
+    setCurrentUser(user);
   };
 
-  const logout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem('loggedInUser');
+  const logout = async () => {
+    await signOut(auth);
+    setCurrentUser(null);
   };
+
+  const isAuthenticated = !!currentUser;
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ currentUser, login, logout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);

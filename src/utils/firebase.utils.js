@@ -1,7 +1,7 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBSP2E84C2IZ0ZGhP1E72QRXNOthWkiV8w",
@@ -15,19 +15,40 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-// Initialize Firebase Analytics
 const analytics = getAnalytics(app);
-
-// Initialize Firebase Auth Provider
+const auth = getAuth(app);
+const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// Select Account
 provider.setCustomParameters({
-    prompt : 'select_account'
+    prompt: 'select_account'
 });
 
-export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+const createUserDocument = async (user) => {
+  const userRef = doc(db, 'users', user.uid);
+  const userSnap = await getDoc(userRef);
 
+  if (!userSnap.exists()) {
+    const { displayName, email } = user;
+    const createdAt = new Date();
 
+    try {
+      await setDoc(userRef, {
+        displayName,
+        email,
+        createdAt
+      });
+    } catch (error) {
+      console.error("Error creating user document", error);
+    }
+  }
+};
+
+export const signInWithGooglePopup = async () => {
+  const result = await signInWithPopup(auth, provider);
+  const user = result.user;
+  await createUserDocument(user);
+  return user;
+};
+
+export { auth, analytics, db };

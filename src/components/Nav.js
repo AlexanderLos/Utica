@@ -11,8 +11,7 @@ function Nav() {
       <div className="NavLinks">
         {!isAuthenticated ? (
           <>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
+            <Link to="/">Login</Link>
             <Link to="/donate">Donate</Link>
           </>
         ) : (

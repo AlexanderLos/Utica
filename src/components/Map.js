@@ -27,31 +27,42 @@ export default function TestMap() {
 
   const getLocation = (e) => {
     e.preventDefault();
+    // console.log('API_KEY:', API_KEY);
+    // console.log('API_URL:', API_URL);
+
     axios.get(API_URL, {
       params: {
         query: selectedCryptoItem.toLowerCase(),
-        near: query
+        near: query,
+        categories: '13035,13040,13041', // Example categories for crypto places
+        limit: 50 // Example limit
       },
       headers: {
         'Accept': 'application/json',
         'Authorization': API_KEY
       }
     }).then(res => {
-      const fetchedLocations = res.data.results.map(location => {
-        const { latitude, longitude } = location.geocodes.main;
-        return {
-          name: location.name,
-          address: location.location.formatted_address,
-          distance: location.distance,
-          timezone: location.timezone,
-          latitude,
-          longitude,
-        };
-      });
-      setLocations(fetchedLocations);
-      if (fetchedLocations.length > 0) setMapCenter([fetchedLocations[0].latitude, fetchedLocations[0].longitude]);
+      console.log('API Response:', res.data);
+      if (res.data && res.data.results) {
+        const fetchedLocations = res.data.results.map(location => {
+          const { latitude, longitude } = location.geocodes.main;
+          return {
+            name: location.name,
+            address: location.location.formatted_address,
+            distance: location.distance,
+            timezone: location.timezone,
+            latitude,
+            longitude,
+          };
+        });
+        setLocations(fetchedLocations);
+        if (fetchedLocations.length > 0) setMapCenter([fetchedLocations[0].latitude, fetchedLocations[0].longitude]);
+      } else {
+        console.error('Invalid API response structure:', res.data);
+      }
     }).catch(err => {
       console.error('API Error:', err);
+      console.error('Error Response:', err.response);
     });
   };
 
@@ -114,7 +125,7 @@ export default function TestMap() {
                       <div>
                         <h3>{location.name}</h3>
                         <p><strong>Address:</strong> {location.address}</p>
-                        <p><strong>Distance:</strong> {location.distance} meters</p>
+                        {/* <p><strong>Distance:</strong> {location.distance} meters</p> */}
                         <p><strong>Timezone:</strong> {location.timezone}</p>
                       </div>
                     </Popup>
@@ -129,4 +140,3 @@ export default function TestMap() {
     </div>
   );
 }
-
