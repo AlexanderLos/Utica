@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
-import { signInWithGooglePopup } from '../utils/firebase.utils'; // Ensure this function can handle the token
+import { signInWithGooglePopup } from '../utils/firebase.utils';
 
 const OAuthRedirectHandler = () => {
   const { login } = useAuth();
@@ -10,13 +10,13 @@ const OAuthRedirectHandler = () => {
   useEffect(() => {
     const handleOAuthRedirect = async () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get('token'); // Adjust this based on how the token is returned
+      const token = urlParams.get('token'); 
       if (token) {
         try {
-          const user = await signInWithGooglePopup(token); // Adjust this to handle the token correctly
+          const user = await signInWithGooglePopup(token); 
           if (user) {
             login(user);
-            navigate('/map'); // Redirect to the desired route after sign-in
+            navigate('/map'); 
           }
         } catch (error) {
           console.error("Error handling OAuth redirect:", error);
