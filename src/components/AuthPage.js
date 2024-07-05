@@ -1,4 +1,6 @@
+import React from 'react';
 import { useAuth } from './AuthContext';
+import { signInWithGooglePopup } from '../utils/firebase.utils';
 import { useNavigate } from 'react-router-dom';
 import '../css/AuthPage.css';
 
@@ -8,8 +10,11 @@ const AuthPage = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      const url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=token&scope=email profile';
-      window.location.href = url;
+      const user = await signInWithGooglePopup();
+      if (user) {
+        login(user);  // Use the login function
+        navigate('/map');  // Use the navigate function to redirect
+      }
     } catch (error) {
       console.error("Error signing in with Google:", error);
     }

@@ -1,33 +1,30 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
-import { signInWithGooglePopup } from '../utils/firebase.utils';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 const OAuthRedirectHandler = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const auth = getAuth();
 
   useEffect(() => {
     const handleOAuthRedirect = async () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get('token'); 
-      if (token) {
-        try {
-          const user = await signInWithGooglePopup(token); 
-          if (user) {
-            login(user);
-            navigate('/map'); 
-          }
-        } catch (error) {
-          console.error("Error handling OAuth redirect:", error);
+      const provider = new GoogleAuthProvider();
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        if (user) {
+          login(user);
+          navigate('/map');
         }
-      } else {
-        console.error("No token found in URL");
+      } catch (error) {
+        console.error("Error handling OAuth redirect:", error);
       }
     };
 
     handleOAuthRedirect();
-  }, [login, navigate]);
+  }, [login, navigate, auth]);
 
   return <div>Loading...</div>;
 };

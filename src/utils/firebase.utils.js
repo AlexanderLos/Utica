@@ -3,6 +3,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
+// Log configuration to verify they are being loaded correctly
 console.log("Firebase Configuration:", {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -26,6 +27,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Ensure Firebase Analytics is only initialized if supported
 let analytics;
 if (typeof window !== 'undefined') {
   analytics = getAnalytics(app);
