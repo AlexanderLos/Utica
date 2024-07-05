@@ -4,8 +4,9 @@ import Donate from './components/Donate';
 import Map from './components/Map';
 import Nav from './components/Nav';
 import AuthPage from './components/AuthPage';
+import Swap from './components/Swap';
 // import Register from './components/Registration';
-import History from './components/History';
+// import History from './components/History';
 import Testmap from './components/Testmap'; 
 import { AuthProvider, useAuth } from './components/AuthContext'; 
 
@@ -26,9 +27,11 @@ function App() {
             <Route path="/login" element={<AuthPage />} />
             {/* <Route path="/register" element={<Register/>} /> */}
             <Route path='/donate' element={<Donate/>} />
+            {/* <Route path='/swap' element={<Swap/>} /> */}
+            <Route path="/swap" element={<PrivateRoute element={<Swap />} />} />
             <Route path="/" element={<AuthPage />} />
             <Route path="/map" element={<PrivateRoute element={<Map />} />} />
-            <Route path="/History" element={<History />} />
+            {/* <Route path="/History" element={<History />} /> */}
             <Route path="/testmap" element={<Testmap />} /> 
           </Routes>
         </div>

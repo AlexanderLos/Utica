@@ -8,7 +8,7 @@ function Donate() {
         <img src={image} alt='Pixel Cat Asking For Donation'/>
         </div>
         <div className='donateContainer'>
-        <h1>Help out a hungry dev.</h1>
+        <h1>Support This Site.</h1>
         <h2>Solana Address: 4gXpqaXpVLgPNkoV6tVa7Py8LtPHiKyWHxruvZCA7wwG</h2>
         </div>
         </>

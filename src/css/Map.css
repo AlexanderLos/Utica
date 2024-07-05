@@ -83,3 +83,56 @@ h2 {
   font-size: 1.5rem;
   color: #d32174;
 }
+
+
+@media (max-width: 1200px) {
+  .about {
+    margin: 40px 80px 10px 80px;
+  }
+}
+
+@media (max-width: 992px) {
+  .about {
+    margin: 30px 60px 10px 60px;
+  }
+  .search-bar {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    margin: 20px 40px 10px 40px;
+  }
+  .search-bar input,
+  .search-bar select,
+  .search-bar button {
+    width: 100%;
+    font-size: small;
+  }
+}
+
+@media (max-width: 576px) {
+  .about {
+    margin: 10px 20px 10px 20px;
+    padding: 10px;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  .search-bar {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .search-bar input,
+  .search-bar select,
+  .search-bar button {
+    width: 100%;
+    font-size: small;
+  }
+  .Mapspot {
+    height: 50vh;
+  }
+}
+
