@@ -19,7 +19,6 @@ function Nav() {
             <Link to="/map">Map</Link>
             <Link to="/donate">Donate</Link>
             <Link to="/swap">Swap</Link>
-            {/* <Link to="/history">History</Link> */}
             <div className="navButton">
               <button onClick={logout}>Logout</button>
             </div>
