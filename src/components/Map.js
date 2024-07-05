@@ -6,10 +6,10 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Icon, divIcon, point } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-const API_KEY = process.env.REACT_APP_API_KEY;
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = 'https://coinmap.org/api/v1/venues';
+const CORS_PROXY = 'http://localhost:8080/';
 
-const cryptoItems = ['Crypto ATM', 'Crypto Store', 'Crypto Exchange'];
+const cryptoItems = ['Store', 'ATM'];
 
 function UpdateMap({ center }) {
   const map = useMap();
@@ -27,32 +27,37 @@ export default function TestMap() {
 
   const getLocation = (e) => {
     e.preventDefault();
-    // console.log('API_KEY:', API_KEY);
-    // console.log('API_URL:', API_URL);
+    const categories = {
+      'Store': 'store',
+      'ATM': 'atm'
+    };
 
-    axios.get(API_URL, {
+    const category = categories[selectedCryptoItem];
+    const lat1 = 25.0; // Minimum latitude for Florida (adjust as needed)
+    const lat2 = 31.0; // Maximum latitude for Florida (adjust as needed)
+    const lon1 = -87.0; // Minimum longitude for Florida (adjust as needed)
+    const lon2 = -80.0; // Maximum longitude for Florida (adjust as needed)
+    
+    console.log("Sending API request to: ", API_URL, " with query: ", query, " and category: ", category);
+    axios.get(CORS_PROXY + API_URL, {
       params: {
-        query: selectedCryptoItem.toLowerCase(),
-        near: query,
-        categories: '13035,13040,13041', // Example categories for crypto places
-        limit: 50 // Example limit
-      },
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': API_KEY
+        query: query,
+        category: category,
+        lat1: lat1,
+        lat2: lat2,
+        lon1: lon1,
+        lon2: lon2,
+        limit: 50 // You can adjust the limit as needed
       }
     }).then(res => {
       console.log('API Response:', res.data);
-      if (res.data && res.data.results) {
-        const fetchedLocations = res.data.results.map(location => {
-          const { latitude, longitude } = location.geocodes.main;
+      if (res.data && res.data.venues) {
+        const fetchedLocations = res.data.venues.map(location => {
           return {
             name: location.name,
-            address: location.location.formatted_address,
-            distance: location.distance,
-            timezone: location.timezone,
-            latitude,
-            longitude,
+            address: location.geolocation_degrees, // or any other address field if available
+            latitude: location.lat,
+            longitude: location.lon,
           };
         });
         setLocations(fetchedLocations);
@@ -81,27 +86,27 @@ export default function TestMap() {
 
   return (
     <div>
-       <div className="about">
+      <div className="about">
         <h2> Welcome to UTICA.</h2>
         <h3> We believe in the future of digital currency. Our platform helps crypto enthusiasts find establishments that accept crypto. To use the service, type a location and choose a service from the dropdown menu. Enjoy your search!</h3>
       </div>
       <div className="search-bar">
-      <form onSubmit={getLocation}>
-        <input 
-          placeholder="Enter a location" 
-          value={query} 
-          onChange={(e) => setQuery(e.target.value)} 
-        />
-        <select 
-          value={selectedCryptoItem} 
-          onChange={(e) => setSelectedCryptoItem(e.target.value)}
-        >
-          {cryptoItems.map((item, index) => (
-            <option key={index} value={item}>{item}</option>
-          ))}
-        </select>
-        <button type="submit">Search</button>
-      </form>
+        <form onSubmit={getLocation}>
+          <input 
+            placeholder="Enter a location" 
+            value={query} 
+            onChange={(e) => setQuery(e.target.value)} 
+          />
+          <select 
+            value={selectedCryptoItem} 
+            onChange={(e) => setSelectedCryptoItem(e.target.value)}
+          >
+            {cryptoItems.map((item, index) => (
+              <option key={index} value={item}>{item}</option>
+            ))}
+          </select>
+          <button type="submit">Search</button>
+        </form>
       </div>
       <div className='map-container'>
         <div className='Mapspot'>
@@ -125,7 +130,6 @@ export default function TestMap() {
                       <div>
                         <h3>{location.name}</h3>
                         <p><strong>Address:</strong> {location.address}</p>
-                        {/* <p><strong>Distance:</strong> {location.distance} meters</p> */}
                         <p><strong>Timezone:</strong> {location.timezone}</p>
                       </div>
                     </Popup>

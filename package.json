@@ -10,6 +10,7 @@
     "aws-amplify": "^6.3.4",
     "axios": "^1.7.2",
     "chart.js": "^4.4.2",
+    "cors-anywhere": "^0.4.4",
     "dayjs": "^1.11.11",
     "dotenv": "^16.4.5",
     "firebase": "^10.12.3",
